@@ -14,7 +14,7 @@ export default function Hero() {
       <div className="absolute inset-0 mesh-gradient"></div>
       
       {/* Animated Grid Pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30"></div>
+      <div className="absolute inset-0 grid-pattern opacity-30 dark:opacity-30 opacity-10"></div>
       
       {/* Animated Orbs */}
       <motion.div 
@@ -60,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-8"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-500/10 dark:bg-green-500/10 border border-green-500/20 dark:border-green-500/20 text-green-700 dark:text-green-400 text-sm font-medium mb-8"
         >
           <motion.span
             animate={{ rotate: [0, 10, -10, 0] }}
@@ -69,7 +69,7 @@ export default function Hero() {
             🏆
           </motion.span>
           <span>{t.hero.badge}</span>
-          <Sparkles className="w-4 h-4 text-amber-400" />
+          <Sparkles className="w-4 h-4 text-amber-500 dark:text-amber-400" />
         </motion.div>
 
         {/* Main Heading */}
@@ -79,17 +79,17 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="heading-xl mb-6"
         >
-          <span className="text-white">{t.hero.title}</span>
+          <span className="text-slate-900 dark:text-white">{t.hero.title}</span>
           <br />
           <span className="gradient-text">{t.hero.titleHighlight}</span>
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-body-lg text-gray-400 max-w-2xl mx-auto mb-10"
+          className="text-body-lg text-slate-700 dark:text-gray-400 max-w-2xl mx-auto mb-10"
         >
           {t.hero.subtitle}
         </motion.p>
@@ -103,7 +103,7 @@ export default function Hero() {
         >
           <motion.a
             href="#register"
-            className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-semibold text-lg overflow-hidden"
+            className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-semibold text-lg overflow-hidden text-white"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -120,7 +120,7 @@ export default function Hero() {
           </motion.a>
           <motion.a
             href="#programs"
-            className="px-8 py-4 rounded-full font-semibold text-lg border border-white/20 hover:border-green-500/50 hover:bg-white/5 transition-all"
+            className="px-8 py-4 rounded-full font-semibold text-lg border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:border-green-500/50 hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -128,7 +128,7 @@ export default function Hero() {
           </motion.a>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats - Fixed contrast */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,9 +136,9 @@ export default function Hero() {
           className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto"
         >
           {[
-            { icon: Users, value: '150+', label: t.hero.stats.students, color: 'green', iconColor: 'text-green-400' },
-            { icon: Award, value: '15+', label: t.hero.stats.years, color: 'amber', iconColor: 'text-amber-400' },
-            { icon: TrendingUp, value: '95%', label: t.hero.stats.success, color: 'emerald', iconColor: 'text-emerald-400' },
+            { icon: Users, value: '150+', label: t.hero.stats.students, iconColor: 'text-green-600 dark:text-green-400' },
+            { icon: Award, value: '15+', label: t.hero.stats.years, iconColor: 'text-amber-600 dark:text-amber-400' },
+            { icon: TrendingUp, value: '95%', label: t.hero.stats.success, iconColor: 'text-emerald-600 dark:text-emerald-400' },
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -148,8 +148,8 @@ export default function Hero() {
               <div className={`flex items-center justify-center gap-2 ${stat.iconColor} mb-2`}>
                 <stat.icon className="w-5 h-5" />
               </div>
-              <div className="text-2xl md:text-4xl font-bold text-white">{stat.value}</div>
-              <div className="text-xs md:text-sm text-gray-400 mt-1">{stat.label}</div>
+              <div className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white">{stat.value}</div>
+              <div className="text-xs md:text-sm text-slate-700 dark:text-gray-400 mt-1">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -161,7 +161,7 @@ export default function Hero() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 rounded-full border-2 border-gray-500 flex justify-center pt-2">
+        <div className="w-6 h-10 rounded-full border-2 border-slate-400 dark:border-gray-500 flex justify-center pt-2">
           <motion.div 
             className="w-1.5 h-1.5 rounded-full bg-green-500"
             animate={{ y: [0, 12, 0] }}

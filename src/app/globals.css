@@ -682,3 +682,101 @@ html[dir="rtl"] .animate-shimmer {
   color: oklch(50% 0 0 / 0.6);
 }
 
+
+/* ========================================
+   LIGHT MODE CONTRAST FIXES (WCAG 2.2)
+   ======================================== */
+
+/* Ensure glass cards have solid backgrounds in light mode for readability */
+:root .glass-card {
+  background: linear-gradient(
+    135deg,
+    oklch(100% 0 0) 0%,
+    oklch(98% 0 0) 100%
+  );
+  border: 1px solid oklch(85% 0 0);
+  box-shadow: 
+    0 4px 30px oklch(0% 0 0 / 0.08),
+    inset 0 1px 0 oklch(100% 0 0);
+}
+
+/* Light mode card hover - visible border */
+:root .card-hover:hover {
+  box-shadow: 
+    0 20px 40px oklch(0% 0 0 / 0.12),
+    0 0 0 2px oklch(55% 0.15 145 / 0.4);
+}
+
+/* Light mode gradient text - ensure contrast */
+:root .gradient-text {
+  background: linear-gradient(135deg, oklch(40% 0.14 145) 0%, oklch(45% 0.16 145) 50%, oklch(55% 0.14 75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light mode section backgrounds */
+:root section {
+  background: oklch(98% 0 0);
+}
+
+/* Light mode FAQ section */
+:root .bg-slate-900\/50 {
+  background: oklch(96% 0 0) !important;
+}
+
+/* Light mode borders */
+:root .border-white\/10,
+:root .border-white\/5 {
+  border-color: oklch(88% 0 0) !important;
+}
+
+/* Light mode bg-white/5 */
+:root .bg-white\/5 {
+  background: oklch(96% 0 0) !important;
+}
+
+/* Light mode text variations */
+:root .text-gray-400 {
+  color: oklch(45% 0 0) !important;
+}
+
+:root .text-gray-500 {
+  color: oklch(40% 0 0) !important;
+}
+
+/* Light mode heading text */
+:root .heading-xl,
+:root .heading-lg,
+:root .heading-md {
+  color: oklch(15% 0 0);
+}
+
+.dark .heading-xl,
+.dark .heading-lg,
+.dark .heading-md {
+  color: oklch(98% 0 0);
+}
+
+/* Light mode badge backgrounds */
+:root .bg-green-500\/10 {
+  background: oklch(95% 0.05 145) !important;
+}
+
+:root .border-green-500\/20 {
+  border-color: oklch(80% 0.08 145) !important;
+}
+
+/* Light mode orb visibility */
+:root .orb-green {
+  background: radial-gradient(circle, oklch(85% 0.08 145 / 0.3) 0%, transparent 70%);
+}
+
+:root .orb-gold {
+  background: radial-gradient(circle, oklch(88% 0.1 75 / 0.25) 0%, transparent 70%);
+}
+
+:root .orb-mixed {
+  background: radial-gradient(circle, oklch(85% 0.08 145 / 0.25) 0%, oklch(88% 0.1 75 / 0.15) 50%, transparent 70%);
+}
+

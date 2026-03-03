@@ -36,17 +36,17 @@ export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
-    <section id="gallery" className="py-20 md:py-32 relative">
+    <section id="gallery" className="py-20 md:py-32 relative bg-white dark:bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 dark:bg-green-500/10 border border-green-500/20 dark:border-green-500/20 text-green-700 dark:text-green-400 text-sm font-medium mb-6">
             {t.gallery.badge}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             <span className="gradient-text">{t.gallery.title}</span>
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
             {t.gallery.subtitle}
           </p>
         </div>
@@ -56,7 +56,7 @@ export default function Gallery() {
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group"
+              className="relative aspect-square rounded-2xl overflow-hidden cursor-pointer group shadow-md dark:shadow-none"
               onClick={() => setSelectedImage(image.src)}
             >
               <img
