@@ -5,11 +5,11 @@ import { useState } from 'react';
 import { Send, CheckCircle, Loader2, User, Mail, Phone, Calendar, Award, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ScrollReveal } from './animations';
+import { toast } from 'sonner';
 
 export default function Registration() {
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     parentName: '',
     studentName: '',
@@ -21,15 +21,54 @@ export default function Registration() {
     message: '',
   });
 
+  const validateForm = () => {
+    if (!formData.parentName.trim()) {
+      toast.error('Parent name is required');
+      return false;
+    }
+    if (!formData.studentName.trim()) {
+      toast.error('Student name is required');
+      return false;
+    }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      toast.error('Please enter a valid email address');
+      return false;
+    }
+    if (!formData.phone.trim()) {
+      toast.error('Phone number is required');
+      return false;
+    }
+    if (!formData.age || parseInt(formData.age) < 6 || parseInt(formData.age) > 25) {
+      toast.error('Age must be between 6 and 25');
+      return false;
+    }
+    if (!formData.program) {
+      toast.error('Please select a program');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) return;
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
+    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     setIsSubmitting(false);
-    setIsSuccess(true);
+    
+    toast.success('🎉 Registration submitted successfully! We\'ll contact you soon.', {
+      duration: 5000,
+      action: {
+        label: 'Dismiss',
+        onClick: () => {},
+      },
+    });
+    
     setFormData({
       parentName: '',
       studentName: '',
@@ -40,8 +79,6 @@ export default function Registration() {
       experience: '',
       message: '',
     });
-
-    setTimeout(() => setIsSuccess(false), 5000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -60,18 +97,18 @@ export default function Registration() {
   ];
 
   return (
-    <section id="register" className="py-20 md:py-32 relative overflow-hidden">
+    <section id="register" className="py-20 md:py-32 relative overflow-hidden bg-slate-50 dark:bg-transparent">
       {/* Background Decorations */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute inset-0 dot-pattern opacity-20"></div>
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/5 dark:bg-green-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-500/5 dark:bg-amber-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 dot-pattern opacity-20 dark:opacity-20 opacity-5"></div>
       
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <ScrollReveal>
             <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 dark:bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium mb-6"
               whileHover={{ scale: 1.05 }}
             >
               <Award className="w-4 h-4" />
@@ -86,7 +123,7 @@ export default function Registration() {
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <p className="text-body-lg text-gray-400">
+            <p className="text-body-lg text-gray-600 dark:text-gray-400">
               {t.registration.subtitle}
             </p>
           </ScrollReveal>
@@ -103,8 +140,8 @@ export default function Registration() {
             viewport={{ once: true }}
           >
             {/* Form Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-3xl"></div>
-            <div className="absolute inset-0 backdrop-blur-xl rounded-3xl"></div>
+            <div className="absolute inset-0 bg-white dark:bg-gradient-to-br dark:from-white/10 dark:to-white/5 border border-slate-200 dark:border-white/10 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none"></div>
+            <div className="absolute inset-0 backdrop-blur-xl dark:backdrop-blur-xl rounded-3xl"></div>
             
             {/* Form Content */}
             <div className="relative p-6 md:p-10">
@@ -119,11 +156,11 @@ export default function Registration() {
                     transition={{ duration: 0.3, delay: idx * 0.05 }}
                     viewport={{ once: true }}
                   >
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       {field.label}
                     </label>
                     <div className="relative group">
-                      <field.icon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-green-500 transition-colors" />
+                      <field.icon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 group-focus-within:text-green-500 transition-colors" />
                       <input
                         type={field.type}
                         name={field.name}
@@ -131,7 +168,7 @@ export default function Registration() {
                         onChange={handleChange}
                         required
                         {...(field.type === 'number' ? { min: '6', max: '25' } : {})}
-                        className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all"
                       />
                     </div>
                   </motion.div>
@@ -145,25 +182,25 @@ export default function Registration() {
                   transition={{ duration: 0.3, delay: 0.25 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {t.registration.form.program}
                   </label>
                   <div className="relative group">
-                    <Award className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-green-500 transition-colors" />
+                    <Award className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 group-focus-within:text-green-500 transition-colors" />
                     <select
                       name="program"
                       value={formData.program}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all appearance-none cursor-pointer"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all appearance-none cursor-pointer"
                     >
-                      <option value="" className="bg-slate-900">{t.registration.form.program}</option>
-                      <option value="beginner" className="bg-slate-900">{t.registration.form.programBeginner}</option>
-                      <option value="intermediate" className="bg-slate-900">{t.registration.form.programIntermediate}</option>
-                      <option value="advanced" className="bg-slate-900">{t.registration.form.programAdvanced}</option>
+                      <option value="" className="bg-white dark:bg-slate-900">{t.registration.form.program}</option>
+                      <option value="beginner" className="bg-white dark:bg-slate-900">{t.registration.form.programBeginner}</option>
+                      <option value="intermediate" className="bg-white dark:bg-slate-900">{t.registration.form.programIntermediate}</option>
+                      <option value="advanced" className="bg-white dark:bg-slate-900">{t.registration.form.programAdvanced}</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -178,25 +215,25 @@ export default function Registration() {
                   transition={{ duration: 0.3, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {t.registration.form.experience}
                   </label>
                   <div className="relative group">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 group-focus-within:text-green-500 transition-colors" />
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 group-focus-within:text-green-500 transition-colors" />
                     <select
                       name="experience"
                       value={formData.experience}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all appearance-none cursor-pointer"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all appearance-none cursor-pointer"
                     >
-                      <option value="" className="bg-slate-900">{t.registration.form.experience}</option>
-                      <option value="none" className="bg-slate-900">{t.registration.form.experienceNone}</option>
-                      <option value="some" className="bg-slate-900">{t.registration.form.experienceSome}</option>
-                      <option value="experienced" className="bg-slate-900">{t.registration.form.experienceExperienced}</option>
+                      <option value="" className="bg-white dark:bg-slate-900">{t.registration.form.experience}</option>
+                      <option value="none" className="bg-white dark:bg-slate-900">{t.registration.form.experienceNone}</option>
+                      <option value="some" className="bg-white dark:bg-slate-900">{t.registration.form.experienceSome}</option>
+                      <option value="experienced" className="bg-white dark:bg-slate-900">{t.registration.form.experienceExperienced}</option>
                     </select>
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -211,18 +248,18 @@ export default function Registration() {
                   transition={{ duration: 0.3, delay: 0.35 }}
                   viewport={{ once: true }}
                 >
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {t.registration.form.message}
                   </label>
                   <div className="relative group">
-                    <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-500 group-focus-within:text-green-500 transition-colors" />
+                    <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-400 dark:text-gray-500 group-focus-within:text-green-500 transition-colors" />
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       rows={4}
                       placeholder={t.registration.form.messagePlaceholder}
-                      className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all resize-none"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 outline-none transition-all resize-none"
                     />
                   </div>
                 </motion.div>
@@ -239,7 +276,7 @@ export default function Registration() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-semibold text-lg flex items-center justify-center gap-3 shadow-lg shadow-green-500/25 hover:shadow-xl hover:shadow-green-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-semibold text-lg flex items-center justify-center gap-3 shadow-lg shadow-green-500/25 hover:shadow-xl hover:shadow-green-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed text-white"
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
@@ -270,28 +307,6 @@ export default function Registration() {
                   </AnimatePresence>
                 </motion.button>
               </motion.div>
-
-              {/* Success Message */}
-              <AnimatePresence>
-                {isSuccess && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-6 p-5 rounded-xl bg-green-500/10 border border-green-500/30 flex items-center gap-4"
-                  >
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', stiffness: 500, damping: 15 }}
-                    >
-                      <CheckCircle className="w-7 h-7 text-green-500" />
-                    </motion.div>
-                    <span className="text-green-400 font-medium">{t.registration.form.success}</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </motion.form>
         </ScrollReveal>

@@ -563,3 +563,95 @@ html[dir="rtl"] {
   background: rgba(34, 197, 94, 0.3);
   color: #fff;
 }
+
+/* ========================================
+   LIGHT THEME (oklch color system)
+   ======================================== */
+
+:root {
+  --background: oklch(98% 0 0);
+  --foreground: oklch(15% 0 0);
+  --card-bg: oklch(100% 0 0);
+  --card-border: oklch(90% 0 0);
+  --toast-bg: oklch(100% 0 0);
+  --toast-color: oklch(20% 0 0);
+  --toast-border: oklch(90% 0 0);
+}
+
+.dark {
+  --background: oklch(10% 0 0);
+  --foreground: oklch(98% 0 0);
+  --card-bg: oklch(15% 0 0);
+  --card-border: oklch(25% 0 0);
+  --toast-bg: oklch(15% 0 0);
+  --toast-color: oklch(98% 0 0);
+  --toast-border: oklch(25% 0 0);
+}
+
+/* Light theme overrides */
+:root body {
+  background: linear-gradient(180deg, oklch(98% 0 0) 0%, oklch(95% 0 0) 100%);
+}
+
+.dark body {
+  background: oklch(10% 0 0);
+}
+
+/* Light mode text colors */
+:root .gradient-text {
+  background: linear-gradient(135deg, oklch(55% 0.15 145) 0%, oklch(65% 0.18 145) 40%, oklch(75% 0.15 75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Light mode cards */
+:root .glass-card {
+  background: linear-gradient(135deg, oklch(100% 0 0) 0%, oklch(98% 0 0) 100%);
+  border: 1px solid oklch(90% 0 0);
+  box-shadow: 0 4px 30px oklch(0% 0 0 / 0.05);
+}
+
+:root .card-hover:hover {
+  box-shadow: 0 20px 40px oklch(0% 0 0 / 0.1), 0 0 0 1px oklch(55% 0.15 145 / 0.3);
+}
+
+/* Light mode mesh gradient */
+:root .mesh-gradient {
+  background: 
+    radial-gradient(at 40% 20%, oklch(90% 0.05 145) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, oklch(90% 0.08 75) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, oklch(92% 0.04 145) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, oklch(88% 0.06 75) 0px, transparent 50%);
+}
+
+/* Light mode orbs */
+:root .orb-green {
+  background: radial-gradient(circle, oklch(80% 0.1 145 / 0.4) 0%, transparent 70%);
+}
+
+:root .orb-gold {
+  background: radial-gradient(circle, oklch(85% 0.12 75 / 0.3) 0%, transparent 70%);
+}
+
+/* Light mode hero */
+:root .hero-section {
+  background: linear-gradient(180deg, oklch(98% 0 0) 0%, oklch(95% 0 0) 100%);
+}
+
+/* Light mode inputs */
+:root .input-premium {
+  background: oklch(98% 0 0);
+  border: 1px solid oklch(88% 0 0);
+}
+
+:root .input-premium:focus {
+  background: oklch(100% 0 0);
+  border-color: oklch(55% 0.15 145 / 0.5);
+  box-shadow: 0 0 0 3px oklch(55% 0.15 145 / 0.1);
+}
+
+:root .input-premium::placeholder {
+  color: oklch(50% 0 0 / 0.6);
+}
+

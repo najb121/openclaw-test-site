@@ -18,7 +18,7 @@ function LoadingScreen() {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[100] bg-slate-950 flex items-center justify-center"
+      className="fixed inset-0 z-[100] bg-slate-950 dark:bg-slate-950 bg-white flex items-center justify-center"
     >
       <div className="text-center">
         <motion.div
@@ -65,13 +65,13 @@ function HomeContent() {
       
       <motion.div 
         dir={dir} 
-        className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white overflow-x-hidden"
+        className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 bg-gradient-to-b from-slate-50 via-white to-slate-50 text-white dark:text-white text-slate-900 overflow-x-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoading ? 0 : 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Noise Overlay */}
-        <div className="fixed inset-0 noise-overlay pointer-events-none z-50"></div>
+        {/* Noise Overlay - subtle in light mode */}
+        <div className="fixed inset-0 noise-overlay pointer-events-none z-50 opacity-100 dark:opacity-100 opacity-30"></div>
         
         <Navbar />
         <main>
