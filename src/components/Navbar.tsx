@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ThemeToggle } from './ThemeToggle';
 
 export default function Navbar() {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, dir } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -39,7 +39,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className={`flex items-center justify-between h-16 md:h-20 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
           <motion.a 
             href="#home" 
@@ -59,7 +59,7 @@ export default function Navbar() {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className={`hidden md:flex items-center gap-1 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
             {navItems.map((item, idx) => (
               <motion.a
                 key={item.href}
@@ -81,7 +81,7 @@ export default function Navbar() {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-3">
+          <div className={`flex items-center gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
             {/* Theme Toggle */}
             <ThemeToggle />
 

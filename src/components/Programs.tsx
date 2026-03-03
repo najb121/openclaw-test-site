@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './animations';
 
 export default function Programs() {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
 
   const programs = [
     {
@@ -143,7 +143,7 @@ export default function Programs() {
                   {program.features.map((feature, fidx) => (
                     <motion.li 
                       key={fidx} 
-                      className="flex items-start gap-3"
+                      className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: fidx * 0.1 }}
@@ -155,7 +155,7 @@ export default function Programs() {
                       >
                         <Check className="w-3 h-3 text-white" />
                       </motion.div>
-                      <span className="text-gray-300">{feature}</span>
+                      <span className="text-gray-300 text-start">{feature}</span>
                     </motion.li>
                   ))}
                 </ul>

@@ -59,6 +59,33 @@ html[dir="rtl"] {
   direction: rtl;
 }
 
+/* RTL-specific adjustments */
+html[dir="rtl"] .gradient-text {
+  background: linear-gradient(135deg, #fbbf24 0%, #4ade80 40%, #22c55e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* RTL text alignment utilities */
+html[dir="rtl"] .text-start {
+  text-align: right;
+}
+
+html[dir="rtl"] .text-end {
+  text-align: left;
+}
+
+/* RTL flip icons that indicate direction */
+html[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* RTL-aware animations */
+html[dir="rtl"] .animate-shimmer {
+  animation-direction: reverse;
+}
+
 /* Premium Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

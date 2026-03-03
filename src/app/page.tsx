@@ -4,10 +4,14 @@ import { LanguageProvider, useLanguage } from '@/lib/LanguageContext';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import Gallery from '@/components/Gallery';
+import WhyChooseUs from '@/components/WhyChooseUs';
 import Programs from '@/components/Programs';
 import Testimonials from '@/components/Testimonials';
+import FAQ from '@/components/FAQ';
 import Registration from '@/components/Registration';
 import Contact from '@/components/Contact';
+import WhatsAppButton from '@/components/WhatsAppButton';
 import Footer from '@/components/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
@@ -50,7 +54,6 @@ function HomeContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial load
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -76,13 +79,16 @@ function HomeContent() {
         <Navbar />
         <main>
           <Hero />
-          <About />
+          <WhyChooseUs />
           <Programs />
+          <Gallery />
           <Testimonials />
+          <FAQ />
           <Registration />
           <Contact />
         </main>
         <Footer />
+        <WhatsAppButton />
       </motion.div>
     </>
   );

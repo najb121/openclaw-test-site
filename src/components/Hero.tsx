@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ScrollReveal, FloatingElement } from './animations';
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
@@ -42,11 +42,11 @@ export default function Hero() {
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       />
       
-      {/* Floating Elements */}
-      <FloatingElement className="absolute top-32 right-10 md:right-32 text-6xl md:text-8xl opacity-20 pointer-events-none">
+      {/* Floating Elements - mirrored for RTL */}
+      <FloatingElement className={`absolute top-32 text-6xl md:text-8xl opacity-20 pointer-events-none ${dir === 'rtl' ? 'left-10 md:left-32' : 'right-10 md:right-32'}`}>
         🧤
       </FloatingElement>
-      <FloatingElement className="absolute bottom-32 left-10 md:left-32 text-6xl md:text-8xl opacity-20 pointer-events-none">
+      <FloatingElement className={`absolute bottom-32 text-6xl md:text-8xl opacity-20 pointer-events-none ${dir === 'rtl' ? 'right-10 md:right-32' : 'left-10 md:left-32'}`}>
         ⚽
       </FloatingElement>
       
@@ -99,7 +99,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          className={`flex flex-col sm:flex-row gap-4 justify-center mb-16 ${dir === 'rtl' ? 'sm:flex-row-reverse' : ''}`}
         >
           <motion.a
             href="#register"

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ScrollReveal, StaggerContainer, StaggerItem } from './animations';
 
 export default function About() {
-  const { t } = useLanguage();
+  const { t, dir } = useLanguage();
 
   const features = [
     {
@@ -37,9 +37,9 @@ export default function About() {
       <div className="absolute inset-0 dot-pattern opacity-30"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${dir === 'rtl' ? 'lg:grid-flow-dense' : ''}`}>
           {/* Image Side */}
-          <ScrollReveal direction="left" className="relative">
+          <ScrollReveal direction="left" className={`relative ${dir === 'rtl' ? 'lg:col-start-2' : ''}`}>
             <div className="relative">
               {/* Main Image Container */}
               <motion.div 
@@ -116,7 +116,7 @@ export default function About() {
           </ScrollReveal>
 
           {/* Content Side */}
-          <div>
+          <div className={dir === 'rtl' ? 'lg:col-start-1 lg:row-start-1' : ''}>
             <ScrollReveal>
               <motion.div 
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-6"
@@ -144,8 +144,8 @@ export default function About() {
               {features.map((feature, idx) => (
                 <StaggerItem key={idx}>
                   <motion.div 
-                    className="group flex gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
-                    whileHover={{ x: 8 }}
+                    className={`group flex gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
+                    whileHover={{ x: dir === 'rtl' ? -8 : 8 }}
                   >
                     <motion.div 
                       className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shrink-0 shadow-lg`}
@@ -154,7 +154,7 @@ export default function About() {
                     >
                       <feature.icon className="w-6 h-6 text-white" />
                     </motion.div>
-                    <div>
+                    <div className={dir === 'rtl' ? 'text-end' : ''}>
                       <h3 className="font-semibold text-white mb-1 text-lg">{feature.title}</h3>
                       <p className="text-gray-400">{feature.desc}</p>
                     </div>
