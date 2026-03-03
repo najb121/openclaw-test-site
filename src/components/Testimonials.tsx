@@ -60,8 +60,8 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center mb-16">
           <ScrollReveal>
-            <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-6"
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium mb-6"
               whileHover={{ scale: 1.05 }}
             >
               <MessageSquare className="w-4 h-4" />
@@ -81,8 +81,8 @@ export default function Testimonials() {
           {testimonials.map((testimonial, idx) => (
             <StaggerItem key={idx}>
               <motion.div
-                className="relative p-6 rounded-2xl bg-gradient-to-b from-white/10 to-white/5 border border-white/10 backdrop-blur-sm group overflow-hidden"
-                whileHover={{ 
+                className="relative p-6 rounded-2xl bg-white dark:bg-gradient-to-b dark:from-white/10 dark:to-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-sm group overflow-hidden shadow-sm"
+                whileHover={{
                   y: -8,
                   borderColor: 'rgba(34, 197, 94, 0.3)'
                 }}
@@ -110,7 +110,7 @@ export default function Testimonials() {
                 </div>
 
                 {/* Text */}
-                <p className="text-gray-300 mb-5 text-sm leading-relaxed relative z-10">"{testimonial.text}"</p>
+                <p className="text-slate-700 dark:text-gray-300 mb-5 text-sm leading-relaxed relative z-10">"{testimonial.text}"</p>
 
                 {/* Author */}
                 <div className="flex items-center gap-3 relative z-10">
@@ -121,8 +121,8 @@ export default function Testimonials() {
                     {testimonial.name[0]}
                   </motion.div>
                   <div>
-                    <div className="font-semibold text-white text-sm">{testimonial.name}</div>
-                    <div className="text-xs text-gray-500">{testimonial.role}</div>
+                    <div className="font-semibold text-slate-900 dark:text-white text-sm">{testimonial.name}</div>
+                    <div className="text-xs text-slate-500 dark:text-gray-500">{testimonial.role}</div>
                   </div>
                 </div>
               </motion.div>

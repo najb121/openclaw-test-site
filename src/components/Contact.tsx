@@ -44,9 +44,9 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative overflow-hidden">
+    <section id="contact" className="py-20 md:py-32 relative overflow-hidden bg-slate-50 dark:bg-transparent">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-100 via-slate-50 to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-950"></div>
       
       {/* Decorative Orbs */}
       <motion.div 
@@ -67,8 +67,8 @@ export default function Contact() {
         {/* Header */}
         <div className="text-center mb-16">
           <ScrollReveal>
-            <motion.div 
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 text-green-400 text-sm font-medium mb-6"
+            <motion.div
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 text-green-600 dark:text-green-400 text-sm font-medium mb-6"
               whileHover={{ scale: 1.05 }}
             >
               <MessageCircle className="w-4 h-4" />
@@ -78,14 +78,14 @@ export default function Contact() {
           
           <ScrollReveal delay={0.1}>
             <h2 className="heading-lg mb-4">
-              <span className="bg-gradient-to-r from-white via-green-100 to-emerald-200 bg-clip-text text-transparent">
+              <span className="gradient-text">
                 {t.contact.title}
               </span>
             </h2>
           </ScrollReveal>
-          
+
           <ScrollReveal delay={0.2}>
-            <p className="text-body-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="text-body-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
               {t.contact.subtitle}
             </p>
           </ScrollReveal>
@@ -158,26 +158,26 @@ function ContactCardContent({ card }: { card: {
   gradient: string;
 }}) {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-white/10 p-6 text-center transition-all duration-300 group-hover:border-white/20">
+    <div className="relative overflow-hidden rounded-2xl bg-white dark:bg-gradient-to-br dark:from-slate-800/50 dark:to-slate-900/50 border border-slate-200 dark:border-white/10 p-6 text-center transition-all duration-300 group-hover:border-slate-300 dark:group-hover:border-white/20 shadow-sm">
       {/* Animated Background Gradient */}
       <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-      
+
       {/* Glow Effect */}
       <div className={`absolute -inset-px rounded-2xl bg-gradient-to-br ${card.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
-      
+
       <div className="relative">
         {/* Icon */}
-        <motion.div 
+        <motion.div
           className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center mx-auto mb-4 shadow-lg`}
           whileHover={{ scale: 1.1, rotate: 10 }}
           transition={{ duration: 0.3 }}
         >
           <card.icon className="w-6 h-6 text-white" />
         </motion.div>
-        
+
         {/* Content */}
-        <h3 className="font-semibold text-white mb-1">{card.title}</h3>
-        <p className="text-gray-400 text-sm">{card.value}</p>
+        <h3 className="font-semibold text-slate-900 dark:text-white mb-1">{card.title}</h3>
+        <p className="text-slate-600 dark:text-gray-400 text-sm">{card.value}</p>
       </div>
     </div>
   );

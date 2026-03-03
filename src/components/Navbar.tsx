@@ -33,8 +33,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-slate-950/90 dark:bg-slate-950/90 bg-white/90 backdrop-blur-xl shadow-2xl shadow-black/20 dark:shadow-black/20 border-b border-white/5 dark:border-white/5 border-slate-200' 
+        scrolled
+          ? 'bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl shadow-2xl shadow-slate-200/50 dark:shadow-black/20 border-b border-slate-200 dark:border-white/5'
           : 'bg-transparent'
       }`}
     >
@@ -64,7 +64,7 @@ export default function Navbar() {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="relative px-4 py-2 text-gray-300 dark:text-gray-300 text-slate-600 hover:text-white dark:hover:text-white hover:text-slate-900 transition-colors text-sm font-medium"
+                className="relative px-4 py-2 text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors text-sm font-medium"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
@@ -88,12 +88,12 @@ export default function Navbar() {
             {/* Language Toggle */}
             <motion.button
               onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-              className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/5 dark:bg-white/5 bg-slate-100 border border-white/10 dark:border-white/10 border-slate-200 hover:bg-white/10 dark:hover:bg-white/10 hover:bg-slate-200 transition-all text-sm font-medium group"
+              className="flex items-center gap-2 px-3 py-2 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:bg-slate-200 dark:hover:bg-white/10 transition-all text-sm font-medium group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Globe className="w-4 h-4 text-gray-400 dark:text-gray-400 text-slate-500 group-hover:text-green-400 dark:group-hover:text-green-400 transition-colors" />
-              <span className="text-gray-300 dark:text-gray-300 text-slate-600 group-hover:text-white dark:group-hover:text-white group-hover:text-slate-900 transition-colors">{language === 'en' ? 'عربي' : 'EN'}</span>
+              <Globe className="w-4 h-4 text-slate-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors" />
+              <span className="text-slate-600 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">{language === 'en' ? 'عربي' : 'EN'}</span>
             </motion.button>
 
             {/* CTA Button */}
@@ -109,7 +109,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-gray-300 dark:text-gray-300 text-slate-600 hover:text-white dark:hover:text-white hover:text-slate-900 relative"
+              className="md:hidden p-2 text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white relative"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -150,7 +150,7 @@ export default function Navbar() {
               transition={{ duration: 0.3 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="py-4 border-t border-white/10 dark:border-white/10 border-slate-200">
+              <div className="py-4 border-t border-slate-200 dark:border-white/10">
                 <div className="flex flex-col gap-1">
                   {navItems.map((item, idx) => (
                     <motion.a
@@ -160,7 +160,7 @@ export default function Navbar() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: idx * 0.05 }}
-                      className="px-4 py-3 text-gray-300 dark:text-gray-300 text-slate-600 hover:text-white dark:hover:text-white hover:text-slate-900 hover:bg-white/5 dark:hover:bg-white/5 hover:bg-slate-100 rounded-xl transition-all"
+                      className="px-4 py-3 text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-all"
                     >
                       {item.label}
                     </motion.a>

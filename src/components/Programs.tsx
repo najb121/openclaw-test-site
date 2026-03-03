@@ -58,8 +58,8 @@ export default function Programs() {
         {/* Header */}
         <div className="text-center mb-16">
           <ScrollReveal>
-            <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium mb-6"
+            <motion.div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium mb-6"
               whileHover={{ scale: 1.05 }}
             >
               <Zap className="w-4 h-4" />
@@ -74,7 +74,7 @@ export default function Programs() {
           </ScrollReveal>
           
           <ScrollReveal delay={0.2}>
-            <p className="text-body-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="text-body-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
               {t.programs.subtitle}
             </p>
           </ScrollReveal>
@@ -85,10 +85,10 @@ export default function Programs() {
           {programs.map((program, idx) => (
             <StaggerItem key={program.key}>
               <motion.div
-                className={`relative rounded-3xl border ${program.borderColor} bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-sm p-6 lg:p-8 overflow-hidden group ${
+                className={`relative rounded-3xl border ${program.borderColor} bg-white dark:bg-gradient-to-b dark:from-white/10 dark:to-white/5 backdrop-blur-sm p-6 lg:p-8 overflow-hidden group ${
                   program.popular ? 'ring-2 ring-green-500/50' : ''
                 }`}
-                whileHover={{ 
+                whileHover={{
                   y: -10,
                   transition: { duration: 0.3 }
                 }}
@@ -131,12 +131,12 @@ export default function Programs() {
                 </motion.div>
 
                 {/* Title & Price */}
-                <h3 className="text-2xl font-bold text-white mb-2">{program.name}</h3>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{program.name}</h3>
                 <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-4xl font-bold text-white">{program.price}</span>
-                  <span className="text-gray-400">MAD{program.period}</span>
+                  <span className="text-4xl font-bold text-slate-900 dark:text-white">{program.price}</span>
+                  <span className="text-slate-600 dark:text-gray-400">MAD{program.period}</span>
                 </div>
-                <p className="text-gray-400 mb-6">{program.description}</p>
+                <p className="text-slate-600 dark:text-gray-400 mb-6">{program.description}</p>
 
                 {/* Features */}
                 <ul className="space-y-3 mb-8">
@@ -155,7 +155,7 @@ export default function Programs() {
                       >
                         <Check className="w-3 h-3 text-white" />
                       </motion.div>
-                      <span className="text-gray-300 text-start">{feature}</span>
+                      <span className="text-slate-700 dark:text-gray-300 text-start">{feature}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -165,8 +165,8 @@ export default function Programs() {
                   href="#register"
                   className={`block w-full py-3.5 rounded-full font-semibold text-center transition-all ${
                     program.popular
-                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-500/25 hover:shadow-xl hover:shadow-green-500/30'
-                      : 'border border-white/20 hover:bg-white/10 hover:border-white/30'
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 shadow-lg shadow-green-500/25 hover:shadow-xl hover:shadow-green-500/30 text-white'
+                      : 'border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 hover:border-slate-400 dark:hover:border-white/30'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

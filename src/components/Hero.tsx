@@ -9,12 +9,12 @@ export default function Hero() {
   const { t, dir } = useLanguage();
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-slate-50 dark:bg-slate-950">
       {/* Mesh Gradient Background */}
       <div className="absolute inset-0 mesh-gradient"></div>
       
       {/* Animated Grid Pattern */}
-      <div className="absolute inset-0 grid-pattern opacity-30 dark:opacity-30 opacity-10"></div>
+      <div className="absolute inset-0 grid-pattern opacity-10 dark:opacity-30"></div>
       
       {/* Animated Orbs */}
       <motion.div 
@@ -60,7 +60,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-500/10 dark:bg-green-500/10 border border-green-500/20 dark:border-green-500/20 text-green-700 dark:text-green-400 text-sm font-medium mb-8"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-100 dark:bg-green-500/10 border border-green-300 dark:border-green-500/20 text-green-800 dark:text-green-400 text-sm font-medium mb-8"
         >
           <motion.span
             animate={{ rotate: [0, 10, -10, 0] }}
@@ -85,7 +85,7 @@ export default function Hero() {
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p
+        <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -103,7 +103,7 @@ export default function Hero() {
         >
           <motion.a
             href="#register"
-            className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-semibold text-lg overflow-hidden text-white"
+            className="group relative px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-semibold text-lg overflow-hidden text-white shadow-lg shadow-green-500/25"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -120,7 +120,7 @@ export default function Hero() {
           </motion.a>
           <motion.a
             href="#programs"
-            className="px-8 py-4 rounded-full font-semibold text-lg border border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:border-green-500/50 hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
+            className="px-8 py-4 rounded-full font-semibold text-lg border-2 border-slate-300 dark:border-white/20 text-slate-700 dark:text-white hover:border-green-500 hover:bg-green-50 dark:hover:bg-white/5 transition-all"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -128,7 +128,7 @@ export default function Hero() {
           </motion.a>
         </motion.div>
 
-        {/* Stats - Fixed contrast */}
+        {/* Stats - High contrast cards */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -136,20 +136,31 @@ export default function Hero() {
           className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto"
         >
           {[
-            { icon: Users, value: '150+', label: t.hero.stats.students, iconColor: 'text-green-600 dark:text-green-400' },
-            { icon: Award, value: '15+', label: t.hero.stats.years, iconColor: 'text-amber-600 dark:text-amber-400' },
-            { icon: TrendingUp, value: '95%', label: t.hero.stats.success, iconColor: 'text-emerald-600 dark:text-emerald-400' },
+            { icon: Users, value: '150+', label: t.hero.stats.students, gradient: 'from-green-500 to-emerald-600' },
+            { icon: Award, value: '15+', label: t.hero.stats.years, gradient: 'from-amber-500 to-orange-600' },
+            { icon: TrendingUp, value: '95%', label: t.hero.stats.success, gradient: 'from-emerald-500 to-teal-600' },
           ].map((stat, idx) => (
             <motion.div
               key={idx}
-              className="glass-card rounded-2xl p-5 md:p-6 card-hover"
-              whileHover={{ y: -5 }}
+              className="relative rounded-2xl p-5 md:p-6 bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 shadow-lg dark:shadow-none overflow-hidden group"
+              whileHover={{ y: -5, scale: 1.02 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <div className={`flex items-center justify-center gap-2 ${stat.iconColor} mb-2`}>
-                <stat.icon className="w-5 h-5" />
+              {/* Subtle gradient accent */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+              
+              {/* Icon */}
+              <div className="relative flex items-center justify-center gap-2 mb-2">
+                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center`}>
+                  <stat.icon className="w-5 h-5 text-white" />
+                </div>
               </div>
-              <div className="text-2xl md:text-4xl font-bold text-slate-900 dark:text-white">{stat.value}</div>
-              <div className="text-xs md:text-sm text-slate-700 dark:text-gray-400 mt-1">{stat.label}</div>
+              
+              {/* Value */}
+              <div className="relative text-2xl md:text-4xl font-bold text-slate-900 dark:text-white">{stat.value}</div>
+              
+              {/* Label */}
+              <div className="relative text-xs md:text-sm text-slate-600 dark:text-slate-300 mt-1 font-medium">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -161,7 +172,7 @@ export default function Hero() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-6 h-10 rounded-full border-2 border-slate-400 dark:border-gray-500 flex justify-center pt-2">
+        <div className="w-6 h-10 rounded-full border-2 border-slate-400 dark:border-slate-500 flex justify-center pt-2">
           <motion.div 
             className="w-1.5 h-1.5 rounded-full bg-green-500"
             animate={{ y: [0, 12, 0] }}

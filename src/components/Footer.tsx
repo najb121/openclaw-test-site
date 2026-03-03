@@ -15,10 +15,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative py-12 border-t border-white/10 overflow-hidden">
+    <footer className="relative py-12 border-t border-slate-200 dark:border-white/10 overflow-hidden bg-slate-50 dark:bg-transparent">
       {/* Background Pattern */}
-      <div className="absolute inset-0 dot-pattern opacity-10"></div>
-      
+      <div className="absolute inset-0 dot-pattern opacity-5 dark:opacity-10"></div>
+
       {/* Gradient Line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent"></div>
       
@@ -40,8 +40,8 @@ export default function Footer() {
           </motion.a>
 
           {/* Copyright */}
-          <motion.div 
-            className="text-center text-gray-500 text-sm"
+          <motion.div
+            className="text-center text-slate-500 dark:text-gray-500 text-sm"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -60,7 +60,7 @@ export default function Footer() {
           </motion.div>
 
           {/* Links */}
-          <div className="flex gap-6 text-sm text-gray-400">
+          <div className="flex gap-6 text-sm text-slate-500 dark:text-gray-400">
             {links.map((link, idx) => (
               <motion.a
                 key={link.href}
@@ -70,7 +70,7 @@ export default function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: idx * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ color: '#fff', y: -2 }}
+                whileHover={{ color: '#16a34a', y: -2 }}
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-emerald-500 group-hover:w-full transition-all duration-300" />

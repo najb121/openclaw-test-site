@@ -682,6 +682,44 @@ html[dir="rtl"] .animate-shimmer {
   color: oklch(50% 0 0 / 0.6);
 }
 
+/* Light mode section backgrounds */
+:root .section-dark {
+  background: linear-gradient(180deg, oklch(98% 0 0) 0%, oklch(95% 0 0) 100%);
+}
+
+.dark .section-dark {
+  background: oklch(10% 0 0);
+}
+
+/* Light mode glass card improvements */
+:root .glass-card {
+  background: linear-gradient(135deg, oklch(100% 0 0) 0%, oklch(98% 0 0) 100%);
+  border: 1px solid oklch(90% 0 0);
+  box-shadow: 0 4px 30px oklch(0% 0 0 / 0.05);
+}
+
+/* Light mode text colors for better contrast */
+:root body {
+  color: oklch(20% 0 0);
+}
+
+.dark body {
+  color: oklch(98% 0 0);
+}
+
+/* Light mode heading colors */
+:root .heading-xl,
+:root .heading-lg,
+:root .heading-md {
+  color: oklch(15% 0 0);
+}
+
+.dark .heading-xl,
+.dark .heading-lg,
+.dark .heading-md {
+  color: oklch(98% 0 0);
+}
+
 
 /* ========================================
    LIGHT MODE CONTRAST FIXES (WCAG 2.2)
